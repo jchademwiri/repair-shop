@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx ./src/db/migrate.ts",
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.4.3",

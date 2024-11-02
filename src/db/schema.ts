@@ -56,5 +56,3 @@ export const ticketsRelations = relations(tickets, ({ one }) => ({
     references: [customers.id],
   }),
 }));
-
-// https://youtu.be/tiSm8ZjFQP0?t=1866
