@@ -1,5 +1,6 @@
-import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 import { NextRequest } from "next/server";
+
+import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 
 export default withAuth(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -8,7 +9,7 @@ export default withAuth(
   },
   {
     isReturnToCurrentPage: true,
-  },
+  }
 );
 
 export const config = {
