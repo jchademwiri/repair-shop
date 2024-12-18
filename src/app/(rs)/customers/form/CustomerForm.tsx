@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import {
   insertCustomerSchema,
-  insertCustomerSchemaType,
-  selectCustomerSchemaType,
+  type insertCustomerSchemaType,
+  type selectCustomerSchemaType,
 } from "@/zod-schemas/customer";
 
 type Props = {
@@ -16,18 +16,18 @@ type Props = {
 
 const CustomerForm = ({ customer }: Props) => {
   const defaultValues: insertCustomerSchemaType = {
-    id: customer?.id || 0,
-    firstName: customer?.firstName || "",
-    lastName: customer?.lastName || "",
-    email: customer?.email || "",
-    phone: customer?.phone || "",
-    address1: customer?.address1 || "",
-    address2: customer?.address2 || "",
-    city: customer?.city || "",
-    state: customer?.state || "",
-    zip: customer?.zip || "",
-    notes: customer?.notes || "",
-    active: customer?.active || false,
+    id: customer?.id ?? 0,
+    firstName: customer?.firstName ?? "",
+    lastName: customer?.lastName ?? "",
+    email: customer?.email ?? "",
+    phone: customer?.phone ?? "",
+    address1: customer?.address1 ?? "",
+    address2: customer?.address2 ?? "",
+    city: customer?.city ?? "",
+    state: customer?.state ?? "",
+    zip: customer?.zip ?? "",
+    notes: customer?.notes ?? "",
+    active: customer?.active ?? false,
   };
 
   const form = useForm<insertCustomerSchemaType>({
