@@ -4,7 +4,7 @@ import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 
 export default withAuth(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function middleware(request: NextRequest) {
+  async (request: NextRequest) => {
     // console.log("middleware ran");
   },
   {
