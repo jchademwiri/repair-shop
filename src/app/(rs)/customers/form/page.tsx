@@ -27,6 +27,7 @@ export default async function CustomerFormPage({
         );
       }
       // put customer form component
+
       console.log(customer);
     } else {
       // new customer form component
