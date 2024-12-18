@@ -7,13 +7,20 @@ export const insertCustomerSchema = createInsertSchema(customers, {
   lastName: (schema) => schema.min(1, "Last name is required"), // Validating minimum length
   address1: (schema) => schema.min(1, "Address is required"), // Validating minimum length
   city: (schema) => schema.min(1, "City is required"), // Validating minimum length
-  state: (schema) => schema.length(2, "State must be exactly 2 characters"), // Validating fixed length
+  state: (schema) =>
+    schema
+      .regex(
+        /^[A-Z]{2,3}$/,
+        "State code must be 2 or 3 characters long and in uppercase"
+      )
+      .transform((value) => value.toUpperCase()), // Ensure uppercase format
+  // Validating fixed length
   email: (schema) => schema.email("Invalid email address"), // Email format validation
   zip: (schema) =>
     schema.regex(
       /^\d{4}$/,
       "Invalid Zip code. South African postal codes must be exactly 4 digits"
-    ),  // Zip code format validation
+    ), // South Africa Zip code format validation
   phone: (schema) =>
     schema.regex(
       /^0\d{2} \d{3} \d{4}$/,
