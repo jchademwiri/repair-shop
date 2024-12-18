@@ -8,3 +8,14 @@ VALUES
     ('Alice', 'Johnson', 'alice.johnson@example.com', '555-123-4567', '789 Pine St', 'Suite 100', 'Chicago', 'IL', '60601', NULL, true, now(), now()),
     ('Bob', 'Brown', 'bob.brown@example.com', '444-555-6666', '321 Maple St', NULL, 'Houston', 'TX', '77001', 'Preferred customer', true, now(), now()),
     ('Charlie', 'Davis', 'charlie.davis@example.com', '222-333-4444', '654 Elm St', 'Floor 2', 'San Francisco', 'CA', '94101', 'New customer', true, now(), now());
+
+
+
+    SELECT
+    CONCAT(first_name, ' ', last_name) AS "Full Name",
+    Phone AS "Phone Number",
+    CONCAT(address1, ' ', COALESCE(address2, '')) AS Address
+FROM
+    customers
+ORDER BY
+    "Full Name" ASC;
