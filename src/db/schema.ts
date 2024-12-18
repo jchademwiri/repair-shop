@@ -19,7 +19,7 @@ export const customers = pgTable("customers", {
   address2: varchar("address2"),
   city: varchar("city").notNull(),
   state: varchar("state", { length: 2 }).notNull(),
-  zip: varchar("zip", { length: 10 }).notNull(),
+  zip: varchar("zip", { length: 4 }).notNull(),
   notes: text("notes"),
   active: boolean("active").default(true).notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),

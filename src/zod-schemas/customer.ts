@@ -11,13 +11,13 @@ export const insertCustomerSchema = createInsertSchema(customers, {
   email: (schema) => schema.email("Invalid email address"), // Email format validation
   zip: (schema) =>
     schema.regex(
-      /^\d{5}(-\d{4})?$/,
-      "Invalid Zip code. Use 5 digits or 5 digits followed by a hyphen and 4 digits"
-    ), // Zip code format validation
+      /^\d{4}$/,
+      "Invalid Zip code. South African postal codes must be exactly 4 digits"
+    ),  // Zip code format validation
   phone: (schema) =>
     schema.regex(
-      /^\d{3}-\d{3}-\d{4}$/,
-      "Invalid phone number format. Use XXX-XXX-XXXX"
+      /^0\d{2} \d{3} \d{4}$/,
+      "Invalid phone number format. Use 0XX XXX XXXX"
     ), // Phone format validation
 });
 
