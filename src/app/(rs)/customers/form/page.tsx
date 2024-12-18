@@ -9,6 +9,7 @@ export default async function CustomerFormPage({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   try {
+    // customers/form?searchParams
     const { customerId } = await searchParams;
 
     // Edit customer form
@@ -19,14 +20,14 @@ export default async function CustomerFormPage({
         return (
           <>
             <h2 className="text-2xl mb-2">
-              Customer ID #{customerId} not found
+              Customer ID #{customerId} not found.
             </h2>
             <BackButton title="Go Back" variant="default" />
           </>
         );
       }
-      console.log(customer);
       // put customer form component
+      console.log(customer);
     } else {
       // new customer form component
     }
