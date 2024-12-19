@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props<S> = {
   fieldTitle: string;
