@@ -4,9 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import InputWithLabel from "@/components/inputs/InputWithLabel";
+import SelectWithLabel from "@/components/inputs/SelectWithLabel";
 import TextAreaWithLabel from "@/components/inputs/TextAreaWithLabel";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { StatesArray } from "@/constants/StatesArray";
 import {
   insertCustomerSchema,
   type insertCustomerSchemaType,
@@ -30,7 +32,6 @@ const CustomerForm = ({ customer }: Props) => {
     state: customer?.state ?? "",
     zip: customer?.zip ?? "",
     notes: customer?.notes ?? "",
-    active: customer?.active ?? false,
   };
 
   const form = useForm<insertCustomerSchemaType>({
@@ -78,9 +79,10 @@ const CustomerForm = ({ customer }: Props) => {
             />
           </div>
           <div className="flex flex-col gap-4 w-full max-w-xs">
-            <InputWithLabel<insertCustomerSchemaType>
+            <SelectWithLabel<insertCustomerSchemaType>
               fieldTitle="State"
               nameInSchema="state"
+              data={StatesArray}
             />
             <InputWithLabel<insertCustomerSchemaType>
               fieldTitle="Zip Code"
