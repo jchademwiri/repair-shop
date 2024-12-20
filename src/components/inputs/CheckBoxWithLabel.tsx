@@ -21,7 +21,6 @@ export default function CheckBoxWithLabel<S>({
   fieldTitle,
   nameInSchema,
   message,
-  ...props
 }: Props<S>) {
   const form = useFormContext();
   return (
@@ -38,6 +37,7 @@ export default function CheckBoxWithLabel<S>({
               <Checkbox
                 id={nameInSchema}
                 {...field}
+                checked={field.value}
                 onCheckedChange={field.onChange}
               />
             </FormControl>
