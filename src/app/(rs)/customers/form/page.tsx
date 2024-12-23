@@ -5,6 +5,18 @@ import { getCustomer } from "@/lib/queries";
 
 import CustomerForm from "./CustomerForm";
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const { customerId } = await searchParams;
+
+  if (!customerId) return { title: "New Customer" };
+
+  return { title: `Edit Customer ID #${customerId}` };
+}
+
 export default async function CustomerFormPage({
   searchParams,
 }: {
@@ -30,8 +42,6 @@ export default async function CustomerFormPage({
       }
       // put customer form component
       return <CustomerForm customer={customer} />;
-
-      // https://youtu.be/bg6KyucKd88?list=PL0Zuz27SZ-6PCLz7VMP2QQdeKa83rshe5&t=2055
     } else {
       // new customer form component
       return <CustomerForm />;
