@@ -1,41 +1,47 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+import { useForm } from 'react-hook-form';
 
-import InputWithLabel from "@/components/inputs/InputWithLabel";
-import SelectWithLabel from "@/components/inputs/SelectWithLabel";
-import TextAreaWithLabel from "@/components/inputs/TextAreaWithLabel";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import { StatesArray } from "@/constants/StatesArray";
+import CheckBoxWithLabel from '@/components/inputs/CheckBoxWithLabel';
+import InputWithLabel from '@/components/inputs/InputWithLabel';
+import SelectWithLabel from '@/components/inputs/SelectWithLabel';
+import TextAreaWithLabel from '@/components/inputs/TextAreaWithLabel';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import { StatesArray } from '@/constants/StatesArray';
 import {
   insertCustomerSchema,
   type insertCustomerSchemaType,
   type selectCustomerSchemaType,
-} from "@/zod-schemas/customer";
+} from '@/zod-schemas/customer';
 
 type Props = {
   customer?: selectCustomerSchemaType;
 };
 
 const CustomerForm = ({ customer }: Props) => {
+  const { getPermission, isLoading } = useKindeBrowserClient();
+  const isManager = !isLoading && getPermission('manager')?.isGranted;
+
   const defaultValues: insertCustomerSchemaType = {
     id: customer?.id ?? 0,
-    firstName: customer?.firstName ?? "",
-    lastName: customer?.lastName ?? "",
-    email: customer?.email ?? "",
-    phone: customer?.phone ?? "",
-    address1: customer?.address1 ?? "",
-    address2: customer?.address2 ?? "",
-    city: customer?.city ?? "",
-    state: customer?.state ?? "",
-    zip: customer?.zip ?? "",
-    notes: customer?.notes ?? "",
+    firstName: customer?.firstName ?? '',
+    lastName: customer?.lastName ?? '',
+    email: customer?.email ?? '',
+    phone: customer?.phone ?? '',
+    address1: customer?.address1 ?? '',
+    address2: customer?.address2 ?? '',
+    city: customer?.city ?? '',
+    state: customer?.state ?? '',
+    zip: customer?.zip ?? '',
+    notes: customer?.notes ?? '',
+    active: customer?.active ?? true,
   };
 
   const form = useForm<insertCustomerSchemaType>({
-    mode: "onBlur",
+    mode: 'onBlur',
     resolver: zodResolver(insertCustomerSchema),
     defaultValues,
   });
@@ -48,7 +54,8 @@ const CustomerForm = ({ customer }: Props) => {
     <div className="flex flex-col gap-1 md:px-8">
       <div>
         <h2 className="text-2xl font-bold">
-          {customer?.id ? "Edit" : "New"} Customer Form
+          {customer?.id ? 'Edit' : 'New'} Customer{' '}
+          {customer?.id ? `ID #${customer.id}` : 'Form'}
         </h2>
       </div>
       <Form {...form}>
@@ -101,18 +108,29 @@ const CustomerForm = ({ customer }: Props) => {
               nameInSchema="notes"
               className="h-40"
             />
+
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : isManager ? (
+              <CheckBoxWithLabel<insertCustomerSchemaType>
+                fieldTitle="Active"
+                nameInSchema="active"
+                message="Yes"
+              />
+            ) : null}
+
             <div className="flex gap-2">
               <Button
                 type="submit"
                 className="w-3/4"
-                variant={"default"}
+                variant={'default'}
                 title="Save"
               >
                 Save
               </Button>
               <Button
                 type="button"
-                variant={"destructive"}
+                variant={'destructive'}
                 title="Reset"
                 onClick={() => form.reset(defaultValues)}
               >
