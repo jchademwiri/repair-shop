@@ -1,10 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 export const metadata = {
-  title: "Page Not Found",
+  title: 'Page Not Found',
 };
 
 export default function NotFound() {
@@ -22,7 +22,7 @@ export default function NotFound() {
           priority={true}
           title="Page Not Found"
         />
-        <Button asChild variant={"link"}>
+        <Button asChild variant={'link'}>
           <Link href="/home">Return Home</Link>
         </Button>
       </div>

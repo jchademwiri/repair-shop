@@ -1,9 +1,9 @@
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
-import BackButton from "@/components/BackButton";
-import { getCustomer, getTicket } from "@/lib/queries";
+import BackButton from '@/components/BackButton';
+import { getCustomer, getTicket } from '@/lib/queries';
 
-import { TicketForm } from "./TicketForm";
+import { TicketForm } from './TicketForm';
 
 export default async function TicketFormPage({
   searchParams,
@@ -71,8 +71,8 @@ export default async function TicketFormPage({
       const customer = await getCustomer(ticket.customerId);
 
       // return ticket form
-      console.log("ticket: ", ticket);
-      console.log("customer: ", customer);
+      console.log('ticket: ', ticket);
+      console.log('customer: ', customer);
       return <TicketForm customer={customer} ticket={ticket} />;
     }
   } catch (e) {

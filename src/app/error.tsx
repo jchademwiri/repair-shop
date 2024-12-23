@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
 // Error boundaries must be Client Components
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 export default function Error({
   error,

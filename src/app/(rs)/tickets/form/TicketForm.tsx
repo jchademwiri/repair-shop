@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import CheckBoxWithLabel from "@/components/inputs/CheckBoxWithLabel";
-import InputWithLabel from "@/components/inputs/InputWithLabel";
-import TextAreaWithLabel from "@/components/inputs/TextAreaWithLabel";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import { selectCustomerSchemaType } from "@/zod-schemas/customer";
+import CheckBoxWithLabel from '@/components/inputs/CheckBoxWithLabel';
+import InputWithLabel from '@/components/inputs/InputWithLabel';
+import TextAreaWithLabel from '@/components/inputs/TextAreaWithLabel';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import { selectCustomerSchemaType } from '@/zod-schemas/customer';
 import {
   insertTicketSchema,
   type insertTicketSchemaType,
   type selectTicketSchemaType,
-} from "@/zod-schemas/tickets";
+} from '@/zod-schemas/tickets';
 
 type Props = {
   customer: selectCustomerSchemaType;
@@ -25,14 +25,14 @@ export const TicketForm = ({ customer, ticket }: Props) => {
     // id: ticket?.id ?? "(New)",
     id: ticket?.id ?? undefined, // Use undefined for new tickets
     customerId: ticket?.customerId ?? customer.id,
-    title: ticket?.title ?? "",
-    description: ticket?.description ?? "",
+    title: ticket?.title ?? '',
+    description: ticket?.description ?? '',
     completed: ticket?.completed ?? false,
-    tech: ticket?.tech ?? "new-ticket@example.com",
+    tech: ticket?.tech ?? 'new-ticket@example.com',
   };
 
   const form = useForm<insertTicketSchemaType>({
-    mode: "onBlur",
+    mode: 'onBlur',
     resolver: zodResolver(insertTicketSchema),
     defaultValues,
   });
@@ -44,8 +44,8 @@ export const TicketForm = ({ customer, ticket }: Props) => {
     <div className="flex flex-col gap-1 sm:px-8">
       <div>
         <h2 className="text-2xl font-bold">
-          {ticket?.id ? "Edit" : "New"} Ticket{" "}
-          {ticket?.id ? `# ${ticket.id}` : "Form"}
+          {ticket?.id ? 'Edit' : 'New'} Ticket{' '}
+          {ticket?.id ? `# ${ticket.id}` : 'Form'}
         </h2>
       </div>
       <Form {...form}>
@@ -95,14 +95,14 @@ export const TicketForm = ({ customer, ticket }: Props) => {
               <Button
                 type="submit"
                 className="w-3/4"
-                variant={"default"}
+                variant={'default'}
                 title="Save"
               >
                 Save
               </Button>
               <Button
                 type="button"
-                variant={"destructive"}
+                variant={'destructive'}
                 title="Reset"
                 onClick={() => form.reset(defaultValues)}
               >

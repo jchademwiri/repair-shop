@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useFormContext } from "react-hook-form";
+import { useFormContext } from 'react-hook-form';
 
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
 type Props<S> = {
   fieldTitle: string;
