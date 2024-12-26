@@ -1,9 +1,8 @@
 import * as Sentry from '@sentry/nextjs';
 
+import CustomerForm from '@/app/(rs)/customers/form/CustomerForm';
 import BackButton from '@/components/BackButton';
 import { getCustomer } from '@/lib/queries';
-
-import CustomerForm from './CustomerForm';
 
 export async function generateMetadata({
   searchParams,
