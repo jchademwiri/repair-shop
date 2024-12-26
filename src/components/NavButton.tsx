@@ -1,8 +1,8 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { LucideIcon } from "lucide-react";
+import { LucideIcon } from 'lucide-react';
 
-import { Button } from "./ui/button";
+import { Button } from './ui/button';
 
 type Props = {
   icon: LucideIcon;
@@ -14,8 +14,8 @@ const NavButton = ({ icon: Icon, label, href }: Props) => {
   return (
     <div>
       <Button
-        variant={"ghost"}
-        size={"icon"}
+        variant={'ghost'}
+        size={'icon'}
         aria-label={label}
         title={label}
         className="rounded-full"

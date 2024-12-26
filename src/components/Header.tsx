@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { File, HomeIcon, LogOut, UsersRound } from "lucide-react";
+import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
+import { File, HomeIcon, LogOut, UsersRound } from 'lucide-react';
 
-import NavButton from "./NavButton";
-import { ModeToggle } from "./mode-toggle";
-import { Button } from "./ui/button";
+import NavButton from './NavButton';
+import { ModeToggle } from './mode-toggle';
+import { Button } from './ui/button';
 
 const Header = () => {
   return (
@@ -30,8 +30,8 @@ const Header = () => {
           <NavButton href="/customers" icon={UsersRound} label="customers" />
           <ModeToggle />
           <Button
-            variant={"ghost"}
-            size={"icon"}
+            variant={'ghost'}
+            size={'icon'}
             aria-label="LogOut"
             title="LogOut"
             className="rounded-full "
