@@ -111,7 +111,7 @@ const CustomerForm = ({ customer }: Props) => {
 
             {isLoading ? (
               <p>Loading...</p>
-            ) : isManager ? (
+            ) : isManager && customer?.id ? (
               <CheckBoxWithLabel<insertCustomerSchemaType>
                 fieldTitle="Active"
                 nameInSchema="active"
