@@ -17,7 +17,7 @@ export const actionClient = createSafeActionClient({
       scope.setContext('clientInput', { clientInput });
       return scope;
     });
-    if (e.constructor.name === 'DatabaseError') {
+    if (e.constructor.name === 'NeonDbError') {
       return "Database error: Your data couldn't be saved. Support has been notified.";
     }
     return e.message;
