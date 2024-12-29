@@ -70,7 +70,9 @@ const CustomerForm = ({ customer }: Props) => {
       toast({
         variant: 'destructive',
         title: 'Error!😢',
-        description: 'An error occurred while saving customer!, Save Failed!',
+        description:
+          error.serverError ??
+          'An error occurred while saving customer!, Save Failed!',
       });
     },
   });
