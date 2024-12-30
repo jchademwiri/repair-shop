@@ -1,21 +1,21 @@
-'use server';
+"use server";
 
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { eq } from 'drizzle-orm';
-import { flattenValidationErrors } from 'next-safe-action';
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { eq } from "drizzle-orm";
+import { flattenValidationErrors } from "next-safe-action";
 
-import { db } from '@/db';
-import { customers } from '@/db/schema';
-import { actionClient } from '@/lib/safe-action';
+import { db } from "@/db";
+import { customers } from "@/db/schema";
+import { actionClient } from "@/lib/safe-action";
 import {
   insertCustomerSchema,
   type insertCustomerSchemaType,
-} from '@/zod-schemas/customer';
+} from "@/zod-schemas/customer";
 
 export const saveCustomerAction = actionClient
-  .metadata({ actionName: 'saveCustomerAction' })
+  .metadata({ actionName: "saveCustomerAction" })
   .schema(insertCustomerSchema, {
     handleValidationErrorsShape: async (ve) =>
       flattenValidationErrors(ve).fieldErrors,
@@ -29,7 +29,7 @@ export const saveCustomerAction = actionClient
       const { isAuthenticated } = getKindeServerSession();
 
       const isAuth = await isAuthenticated();
-      if (!isAuth) redirect('/login');
+      if (!isAuth) redirect("/login");
 
       //   New customer
       if (customer.id === 0) {
@@ -77,5 +77,5 @@ export const saveCustomerAction = actionClient
       return {
         message: `Cutomer ID #${result[0].updatedId} updated succefully`,
       };
-    }
+    },
   );

@@ -58,17 +58,20 @@ export const TicketForm = ({
   const {
     execute: executeSave,
     result: saveResult,
-    isExecuting: isSaving,
+    isPending: isSaving,
     reset: resetSaveAction,
   } = useAction(SaveTicketActions, {
     onSuccess({ data }) {
-      toast({
-        variant: "default",
-        title: "Success!🎉",
-        description: data?.message ?? "Customer saved successfully!",
-      });
+      if (data?.message){
+                toast({
+          variant: "default",
+          title: "Success!🎉",
+          description: data.message ?? "Customer saved successfully!",
+        });
+      }
     },
     onError({ error }) {
+      
       toast({
         variant: "destructive",
         title: "Error!😢",
