@@ -6,7 +6,7 @@ import { LoaderCircle } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
 import { useForm } from 'react-hook-form';
 
-import { saveCustomerAction } from '@/app/actions/SaveCustomerActions';
+import { saveCustomerAction } from '@/app/actions/SaveCustomerAction';
 import { DisplayServerActionResponse } from '@/components/DisplayServerActionResponse';
 import CheckBoxWithLabel from '@/components/inputs/CheckBoxWithLabel';
 import InputWithLabel from '@/components/inputs/InputWithLabel';
