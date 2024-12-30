@@ -1,20 +1,25 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderCircle } from "lucide-react";
+import { useAction } from "next-safe-action/hooks";
+import { useForm } from "react-hook-form";
 
-import CheckBoxWithLabel from '@/components/inputs/CheckBoxWithLabel';
-import InputWithLabel from '@/components/inputs/InputWithLabel';
-import SelectWithLabel from '@/components/inputs/SelectWithLabel';
-import TextAreaWithLabel from '@/components/inputs/TextAreaWithLabel';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { selectCustomerSchemaType } from '@/zod-schemas/customer';
+import { SaveTicketActions } from "@/app/actions/SaveTicketAction";
+import { DisplayServerActionResponse } from "@/components/DisplayServerActionResponse";
+import CheckBoxWithLabel from "@/components/inputs/CheckBoxWithLabel";
+import InputWithLabel from "@/components/inputs/InputWithLabel";
+import SelectWithLabel from "@/components/inputs/SelectWithLabel";
+import TextAreaWithLabel from "@/components/inputs/TextAreaWithLabel";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
+import { selectCustomerSchemaType } from "@/zod-schemas/customer";
 import {
   insertTicketSchema,
   type insertTicketSchemaType,
   type selectTicketSchemaType,
-} from '@/zod-schemas/tickets';
+} from "@/zod-schemas/tickets";
 
 type Props = {
   customer: selectCustomerSchemaType;
@@ -33,35 +38,61 @@ export const TicketForm = ({
   isEditable = true,
 }: Props) => {
   const isManager = Array.isArray(techs);
-
+  const { toast } = useToast();
   const defaultValues: insertTicketSchemaType = {
     // id: ticket?.id ?? "(New)",
     id: ticket?.id ?? undefined, // Use undefined for new tickets
     customerId: ticket?.customerId ?? customer.id,
-    title: ticket?.title ?? '',
-    description: ticket?.description ?? '',
+    title: ticket?.title ?? "",
+    description: ticket?.description ?? "",
     completed: ticket?.completed ?? false,
-    tech: ticket?.tech ?? 'new-ticket@example.com',
+    tech: ticket?.tech ?? "new-ticket@example.com",
   };
 
   const form = useForm<insertTicketSchemaType>({
-    mode: 'onBlur',
+    mode: "onBlur",
     resolver: zodResolver(insertTicketSchema),
     defaultValues,
   });
 
+  const {
+    execute: executeSave,
+    result: saveResult,
+    isExecuting: isSaving,
+    reset: resetSaveAction,
+  } = useAction(SaveTicketActions, {
+    onSuccess({ data }) {
+      toast({
+        variant: "default",
+        title: "Success!🎉",
+        description: data?.message ?? "Customer saved successfully!",
+      });
+    },
+    onError({ error }) {
+      toast({
+        variant: "destructive",
+        title: "Error!😢",
+        description:
+          error.serverError ??
+          "An error occurred while saving customer!, Save Failed!",
+      });
+    },
+  });
+
   async function submitForm(data: insertTicketSchemaType) {
-    console.log(data);
+    // console.log(data);
+    executeSave(data);
   }
   return (
     <div className="flex flex-col gap-1 sm:px-8">
+      <DisplayServerActionResponse result={saveResult} />
       <div>
         <h2 className="text-2xl font-bold">
           {ticket?.id && isEditable
             ? `Edit Ticket # ${ticket.id}`
             : ticket?.id
               ? `View Ticket # ${ticket.id}`
-              : 'New Ticket Form'}
+              : "New Ticket Form"}
         </h2>
       </div>
       <Form {...form}>
@@ -82,8 +113,8 @@ export const TicketForm = ({
                 nameInSchema="tech"
                 data={[
                   {
-                    id: 'new-ticket@example.com',
-                    description: 'new-ticket@example.com',
+                    id: "new-ticket@example.com",
+                    description: "new-ticket@example.com",
                   },
                   ...techs,
                 ]}
@@ -137,15 +168,25 @@ export const TicketForm = ({
                   className="w-3/4"
                   variant="default"
                   title="Save"
+                  disabled={isSaving}
                 >
-                  Save
+                  {isSaving ? (
+                    <>
+                      <LoaderCircle className="animate-spin" />
+                    </>
+                  ) : (
+                    "Save"
+                  )}
                 </Button>
 
                 <Button
                   type="button"
                   variant="destructive"
                   title="Reset"
-                  onClick={() => form.reset(defaultValues)}
+                  onClick={() => {
+                    form.reset(defaultValues);
+                    resetSaveAction();
+                  }}
                 >
                   Reset
                 </Button>
