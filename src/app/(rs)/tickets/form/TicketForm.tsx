@@ -40,8 +40,7 @@ export const TicketForm = ({
   const isManager = Array.isArray(techs);
   const { toast } = useToast();
   const defaultValues: insertTicketSchemaType = {
-    // id: ticket?.id ?? "(New)",
-    id: ticket?.id ?? undefined, // Use undefined for new tickets
+    id: ticket?.id ?? "(New)",
     customerId: ticket?.customerId ?? customer.id,
     title: ticket?.title ?? "",
     description: ticket?.description ?? "",
@@ -62,8 +61,8 @@ export const TicketForm = ({
     reset: resetSaveAction,
   } = useAction(SaveTicketActions, {
     onSuccess({ data }) {
-      if (data?.message){
-                toast({
+      if (data?.message) {
+        toast({
           variant: "default",
           title: "Success!🎉",
           description: data.message ?? "Customer saved successfully!",
@@ -71,7 +70,6 @@ export const TicketForm = ({
       }
     },
     onError({ error }) {
-      
       toast({
         variant: "destructive",
         title: "Error!😢",

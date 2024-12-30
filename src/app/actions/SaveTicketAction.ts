@@ -32,7 +32,7 @@ export const SaveTicketActions = actionClient
       if (!isAuth) redirect("/login");
 
       //   New Ticket
-      if (ticket.id === undefined) {
+      if (ticket.id === "(New)") {
         const result = await db
           .insert(tickets)
           .values({
