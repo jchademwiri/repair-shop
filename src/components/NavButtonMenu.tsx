@@ -36,7 +36,11 @@ export default function NavButtonMenu({ icon: Icon, label, choices }: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {choices.map((choice) => (
-          <DropdownMenuItem key={choice.title} asChild>
+          <DropdownMenuItem
+            key={choice.title}
+            className="cursor-pointer"
+            asChild
+          >
             <Link href={choice.href}>{choice.title}</Link>
           </DropdownMenuItem>
         ))}

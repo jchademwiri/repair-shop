@@ -1,11 +1,12 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { File, HomeIcon, LogOut, UsersRound } from 'lucide-react';
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { File, HomeIcon, LogOut, UsersRound } from "lucide-react";
 
-import NavButton from './NavButton';
-import { ModeToggle } from './ModeToggle';
-import { Button } from './ui/button';
+import { ModeToggle } from "./ModeToggle";
+import NavButton from "./NavButton";
+import NavButtonMenu from "./NavButtonMenu";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
@@ -27,11 +28,18 @@ const Header = () => {
         </div>
         <div className="flex items-center ">
           <NavButton href="/tickets" icon={File} label="tickets" />
-          <NavButton href="/customers" icon={UsersRound} label="customers" />
+          <NavButtonMenu
+            icon={UsersRound}
+            label="customers Menu"
+            choices={[
+              { title: "Search Customers", href: "/customers" },
+              { title: "New Customers", href: "/customers/form" },
+            ]}
+          />
           <ModeToggle />
           <Button
-            variant={'ghost'}
-            size={'icon'}
+            variant={"ghost"}
+            size={"icon"}
             aria-label="LogOut"
             title="LogOut"
             className="rounded-full "
