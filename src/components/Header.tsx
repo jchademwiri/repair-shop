@@ -4,7 +4,7 @@ import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
 import { File, HomeIcon, LogOut, UsersRound } from 'lucide-react';
 
 import NavButton from './NavButton';
-import { ModeToggle } from './mode-toggle';
+import { ModeToggle } from './ModeToggle';
 import { Button } from './ui/button';
 
 const Header = () => {
