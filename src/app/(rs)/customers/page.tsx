@@ -17,7 +17,7 @@ export default async function Customers({
   if (!searchText) return <CustomerSerach />;
 
   const span = Sentry.startInactiveSpan({
-    name: "getCustomerSearchResults-1",
+    name: "getCustomerSearchResults-2",
   });
 
   const results = await getCustomerSearchResults(searchText);
