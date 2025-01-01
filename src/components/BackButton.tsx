@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { ButtonHTMLAttributes } from 'react';
+import { useRouter } from "next/navigation";
+import { ButtonHTMLAttributes } from "react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 type Props = {
   title: string;
   className?: string;
   variant?:
-    | 'default'
-    | 'destructive'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link'
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
     | null
     | undefined;
 } & ButtonHTMLAttributes<HTMLButtonElement>;

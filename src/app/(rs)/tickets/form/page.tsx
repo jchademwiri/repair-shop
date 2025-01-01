@@ -1,10 +1,10 @@
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { Users, init as kindeInit } from '@kinde/management-api-js';
-import * as Sentry from '@sentry/nextjs';
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Users, init as kindeInit } from "@kinde/management-api-js";
+import * as Sentry from "@sentry/nextjs";
 
-import { TicketForm } from '@/app/(rs)/tickets/form/TicketForm';
-import BackButton from '@/components/BackButton';
-import { getCustomer, getTicket } from '@/lib/queries';
+import { TicketForm } from "@/app/(rs)/tickets/form/TicketForm";
+import BackButton from "@/components/BackButton";
+import { getCustomer, getTicket } from "@/lib/queries";
 
 export async function generateMetadata({
   searchParams,
@@ -15,7 +15,7 @@ export async function generateMetadata({
 
   if (!customerId && !ticketId)
     return {
-      title: 'Missing Ticket ID or Customer ID',
+      title: "Missing Ticket ID or Customer ID",
     };
 
   if (customerId)
@@ -50,7 +50,7 @@ export default async function TicketFormPage({
 
     const { getPermission, getUser } = getKindeServerSession();
     const [managerPermission, user] = await Promise.all([
-      getPermission('manager'),
+      getPermission("manager"),
       getUser(),
     ]);
     const isManager = managerPermission?.isGranted;

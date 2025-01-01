@@ -1,6 +1,6 @@
-import * as Sentry from '@sentry/nextjs';
-import { createSafeActionClient } from 'next-safe-action';
-import { z } from 'zod';
+import * as Sentry from "@sentry/nextjs";
+import { createSafeActionClient } from "next-safe-action";
+import { z } from "zod";
 
 export const actionClient = createSafeActionClient({
   defineMetadataSchema() {
@@ -12,12 +12,12 @@ export const actionClient = createSafeActionClient({
     const { clientInput, metadata } = utils;
     Sentry.captureException(e, (scope) => {
       scope.clear();
-      scope.setContext('serverError', { message: e.message });
-      scope.setContext('metadata', { actionName: metadata?.actionName });
-      scope.setContext('clientInput', { clientInput });
+      scope.setContext("serverError", { message: e.message });
+      scope.setContext("metadata", { actionName: metadata?.actionName });
+      scope.setContext("clientInput", { clientInput });
       return scope;
     });
-    if (e.constructor.name === 'NeonDbError') {
+    if (e.constructor.name === "NeonDbError") {
       return "Database error: Your data couldn't be saved. Support has been notified.";
     }
     return e.message;

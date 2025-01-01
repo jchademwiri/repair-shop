@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/nextjs';
+import * as Sentry from "@sentry/nextjs";
 
-import CustomerForm from '@/app/(rs)/customers/form/CustomerForm';
-import BackButton from '@/components/BackButton';
-import { getCustomer } from '@/lib/queries';
+import CustomerForm from "@/app/(rs)/customers/form/CustomerForm";
+import BackButton from "@/components/BackButton";
+import { getCustomer } from "@/lib/queries";
 
 export async function generateMetadata({
   searchParams,
@@ -11,7 +11,7 @@ export async function generateMetadata({
 }) {
   const { customerId } = await searchParams;
 
-  if (!customerId) return { title: 'New Customer' };
+  if (!customerId) return { title: "New Customer" };
 
   return { title: `Edit Customer ID #${customerId}` };
 }

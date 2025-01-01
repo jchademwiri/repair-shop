@@ -1,6 +1,6 @@
-import { NextRequest } from 'next/server';
+import { NextRequest } from "next/server";
 
-import { withAuth } from '@kinde-oss/kinde-auth-nextjs/middleware';
+import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 
 export default withAuth(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -9,7 +9,7 @@ export default withAuth(
   },
   {
     isReturnToCurrentPage: true,
-  }
+  },
 );
 
 export const config = {
@@ -26,6 +26,6 @@ export const config = {
      * - login
      * - homepage (represented with $ after beginning /)
      */
-    '/((?!api|_next/static|_next/image|auth|favicon.ico|robots.txt|images|login|$).*)',
+    "/((?!api|_next/static|_next/image|auth|favicon.ico|robots.txt|images|login|$).*)",
   ],
 };

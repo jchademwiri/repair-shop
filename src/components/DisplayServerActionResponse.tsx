@@ -12,15 +12,15 @@ const MessageBox = ({
   type,
   content,
 }: {
-  type: 'success' | 'error';
+  type: "success" | "error";
   content: React.ReactNode;
 }) => (
   <div
     className={` bg-accent px-4 py-2 rounded-lg ${
-      type === 'error' ? ' text-red-500' : ' text-green-500'
+      type === "error" ? " text-red-500" : " text-green-500"
     } `}
   >
-    {type === 'success' ? 'Success!🎉' : 'Error!🚨'} {content}
+    {type === "success" ? "Success!🎉" : "Error!🚨"} {content}
   </div>
 );
 
