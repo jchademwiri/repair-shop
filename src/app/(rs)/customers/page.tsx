@@ -1,8 +1,24 @@
+import CustomerSerach from "@/app/(rs)/customers/CustomerSerach";
+import { getCustomerSearchResults } from "@/lib/queries/getCustomerSearchResults";
+
 export const metadata = {
-  title: 'Customers',
+  title: "Customer Serach",
 };
 
-const Customers = () => {
-  return <div>Customers Page</div>;
-};
-export default Customers;
+export default async function Customers({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const { searchText } = await searchParams;
+  if (!searchText) return <CustomerSerach />;
+
+  const results = await getCustomerSearchResults(searchText);
+
+  return (
+    <>
+      <CustomerSerach />
+      <p>{JSON.stringify(results)}</p>
+    </>
+  );
+}
