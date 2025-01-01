@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { TextareaHTMLAttributes } from 'react';
+import { TextareaHTMLAttributes } from "react";
 
-import { useFormContext } from 'react-hook-form';
+import { useFormContext } from "react-hook-form";
 
 import {
   FormControl,
@@ -10,8 +10,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props<S> = {
   fieldTitle: string;
